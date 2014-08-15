@@ -1,0 +1,48 @@
+{
+  "name": "isotopo.net",
+  "version": "2.0.0",
+  "description": "isotopo.net website",
+  "main": "Gruntfile.js",
+  "private": true,
+  "directories": {
+    "test": "test",
+    "out": "out"
+  },
+  "environment": "isotopo",
+  "dependencies": {
+    "grunt": "~0.4.5",
+    "grunt-cli": "~0.1.13"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-connect": "^0.7.1",
+    "grunt-contrib-copy": "^0.5.0",
+    "grunt-contrib-cssmin": "^0.10.0",
+    "grunt-contrib-htmlmin": "^0.3.0",
+    "grunt-contrib-imagemin": "^0.7.1",
+    "grunt-contrib-jshint": "~0.6.3",
+    "grunt-contrib-less": "*",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-watch": "*",
+    "grunt-http-server": "0.0.5",
+    "grunt-includes": "~0.3.5",
+    "grunt-mocha": "^0.4.11",
+    "grunt-plato": "~0.2.1",
+    "time-grunt": "~0.2.9"
+  },
+  "scripts": {
+    "report": "grunt plato",
+    "start": "grunt"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "isotopo"
+  ],
+  "author": "Some isotopo Developer",
+  "license": "MIT"
+}
