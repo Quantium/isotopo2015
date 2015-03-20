@@ -36,11 +36,15 @@ module.exports = function(grunt) {
                     document: true
                 }
             },
+            express:{
+                options:{globals:{jQuery:false}},
+                files:{dev:['app.js','routes/{,*/}*.js']}
+            },
             beforeconcat:{
-                files:{dev:['Gruntfile.js'],assets:['src/js/**.js']}
+                files:{dev:['Gruntfile.js','src/js/**.js']}
             },
             afterconcat:{
-                files:{assets:['public/js/custom.js]']}
+                files:{public:['public/js/custom.js]']}
             }
         },
         uglify: {
@@ -50,26 +54,6 @@ module.exports = function(grunt) {
             dist: {
                 files: {
                     'public/js/custom.js': ['src/js/custom.js']
-                }
-            }
-        },
-        mocha: {
-            all: {
-                options: {
-                    log: true,
-                    reporter: 'Nyan',
-                    run: true,
-                    timeout: 10000,
-                    urls: ['http://localhost:<%= connect.test.options.port %>/test/index.html']
-                }
-            }
-        },
-        connect: {
-            test:{
-                options:{
-                    base: ".",
-                    port: 8383,
-                    path: 'http://localhost:<%= connect.test.options.port %>/test'
                 }
             }
         },
@@ -118,8 +102,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-plato');
-    grunt.loadNpmTasks('grunt-contrib-connect');
-    grunt.loadNpmTasks('grunt-mocha');
     grunt.loadNpmTasks('grunt-http-server');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
@@ -142,12 +124,12 @@ module.exports = function(grunt) {
     });
     grunt.registerTask('dev', [
 
+        'jshint:express',
         'jshint:beforeconcat',
         'clean:build',
         'copy:build',
-        //'concat:dev',
-
         'uglify:dist',
+        'jshint:afterconcat',
         'cssmin:dev',
         'imagemin:dev'
 
