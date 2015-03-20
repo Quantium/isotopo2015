@@ -16,14 +16,14 @@ module.exports = function(grunt) {
                     'font-awesome/css/**.**',
                     'js/plugins/**.js'
                   ],
-                  dest:'out'
+                  dest:'public'
                 }
               ]
           }
         },
         clean: {
             build: {
-                src: ['out']
+                src: ['public']
             }
         },
         jshint: {
@@ -37,10 +37,10 @@ module.exports = function(grunt) {
                 }
             },
             beforeconcat:{
-                files:{dev:['Gruntfile.js'],assets:['src/js/custom.js']}
+                files:{dev:['Gruntfile.js'],assets:['src/js/**.js']}
             },
             afterconcat:{
-                files:{assets:['out/js/custom.js]']}
+                files:{assets:['public/js/custom.js]']}
             }
         },
         uglify: {
@@ -49,29 +49,8 @@ module.exports = function(grunt) {
             },
             dist: {
                 files: {
-                    'out/js/custom.js': ['src/js/custom.js']
+                    'public/js/custom.js': ['src/js/custom.js']
                 }
-            }
-        },
-        htmlmin: {
-            prod: {
-                options: {
-                    removeComments: true,
-                    collapseWhitespace: true
-                },
-                files: {
-                    'out/index.html': 'src/index.html'
-                }
-            }
-        },
-        watch: {
-            html: {
-                files: [ 'src/*.html'],
-                tasks: [ 'includes' ]
-            },
-            js: {
-                files: [ 'src/js/*.js','src/js/**/*.js' ],
-                tasks: [ 'concat:dev' ]
             }
         },
         mocha: {
@@ -102,17 +81,17 @@ module.exports = function(grunt) {
                 expand: true,
                 cwd: 'src',
                 src: ['css/**/**.css','css/**.min.css', 'css/**.css','css/**.min.css','color/**.css'],
-                dest: 'out',
+                dest: 'public',
                 ext: '.css'
             }
         },
         imagemin: {
-            dev: {                         
+            dev: {
                 files: [{
-                    expand: true,                  
-                    cwd: 'src/img',            
-                    src: ['**.{png,jpg,gif}','**/**.{png,jpg,gif}'],  
-                    dest: 'out/img'           
+                    expand: true,
+                    cwd: 'src/img',
+                    src: ['**.{png,jpg,gif}','**/**.{png,jpg,gif}'],
+                    dest: 'public/img'
                 }]
             }
         },
@@ -137,7 +116,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-less');
-    grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-plato');
     grunt.loadNpmTasks('grunt-contrib-connect');
@@ -170,14 +148,10 @@ module.exports = function(grunt) {
         //'concat:dev',
 
         'uglify:dist',
-        'htmlmin:prod',
         'cssmin:dev',
         'imagemin:dev'
 
     ]);
-    grunt.event.on('watch', function(action, filepath, target) {
-        grunt.log.writeln(target + ': ' + filepath + ' has ' + action);
-    });
 
     grunt.registerTask('report', ['default','plato','http-server:plato']);
 

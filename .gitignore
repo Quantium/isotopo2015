@@ -148,5 +148,5 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
-out/
+public/
 report/

@@ -1,0 +1,79 @@
+section#contact.home-section.text-center
+  .heading-contact.marginbot-50
+    .container
+      .row
+        .col-lg-8.col-lg-offset-2
+          .section-heading
+            h2 Get in touch
+                           
+            p Get in touch. Leave us a message.
+       
+  .container
+    .row
+      .col-lg-8.col-md-offset-2
+        .boxed-grey
+          form#contact-form
+            .row
+              .col-md-6
+                .form-group
+                  label(for='name')
+                     Name
+                                         
+                  input#name.form-control(type='text', placeholder='Enter name', required='required')
+                                     
+                .form-group
+                  label(for='email')
+                     Email Address
+                                           
+                  .input-group
+                    span.input-group-addon
+                      span.glyphicon.glyphicon-envelope
+                                             
+                    input#email.form-control(type='email', placeholder='Enter email', required='required')
+                                       
+                .form-group
+                  label(for='subject')
+                     Subject
+                                             
+                  select#subject.form-control(name='subject', required='required')
+                    option(value='na', selected='') Choose One:
+                                                 
+                    option(value='service') General Customer Service
+                                                 
+                    option(value='suggestions') Suggestions
+                                                 
+                    option(value='product') Product Support
+                                     
+              .col-md-6
+                .form-group
+                  label(for='name')
+                     Message
+                                               
+                  textarea#message.form-control(name='message', rows='9', cols='25', required='required', placeholder='Message')
+                                       
+              .col-md-12
+                button#btnContactUs.btn.btn-skin.pull-right(type='submit')
+                   Send Message
+                             
+        .widget-contact.row
+          .col-lg-6
+            address
+              strong Isotopo S.A. de C.V.
+              br/
+              |Zamora 187, Col. Condesa
+              br/
+              |Mexico City, 06760
+              br/
+                                         
+              abbr(title='Phone') P:
+                | +52 (55) 3547-1780
+                                 
+          .col-lg-6
+            address
+              strong Email
+              br/
+                                         
+              a(href='mailto:#') hello@isotopo.net
+              br/
+                                         
+              a(href='mailto:#') jobs@isotopo.net

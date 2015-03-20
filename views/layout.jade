@@ -1,7 +1,8 @@
 doctype html
-html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
+include ./includes/head.jade
+  body(data-spy='scroll')
+    include ./includes/menu.jade
     block content
+      p isotopo
+    include ./includes/footer.jade
+    include ./includes/footerscripts.jade

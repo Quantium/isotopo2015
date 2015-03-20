@@ -1,5 +1,14 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  block intro
+    include ./includes/index/intro.jade
+
+  block about
+    include ./includes/index/about.jade
+    
+  block services
+    include ./includes/index/services.jade
+  
+  block contact
+    include ./includes/contact.jade
