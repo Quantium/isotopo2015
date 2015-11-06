@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+- '0.12'
+services:
+- mongodb
+deploy:
+  provider: heroku 
+  api_key: $HEROKU_APP_ID
+  app: isotoponet
+  revision_type: github
+  deployment_group: 4yopping
+  application: TravisCI
+  on:
+    repo: Quantium/isotopo2015
