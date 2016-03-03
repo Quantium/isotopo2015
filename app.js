@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var metrics = require('datadog-metrics');
 
 var routes = require('./routes/index');
 
@@ -30,6 +31,20 @@ app.use(function(req, res, next) {
     next(err);
 });
 */
+
+//Datadog Metrics
+metrics.init({ host: 'isotopo', prefix: 'website_' });
+
+function collectMemoryStats() {
+    var memUsage = process.memoryUsage();
+    metrics.gauge('memory.rss', memUsage.rss);
+    metrics.gauge('memory.heapTotal', memUsage.heapTotal);
+    metrics.gauge('memory.heapUsed', memUsage.heapUsed);
+};
+
+setInterval(collectMemoryStats, 5000);
+
+
 // error handlers
 
 // development error handler
